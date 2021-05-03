@@ -22,7 +22,8 @@ namespace CommandAPI {
         public void ConfigureServices (IServiceCollection services) {
             services.AddControllers ();
             services.AddDbContext<CommandContext> (opt => opt.UseSqlServer (Configuration.GetConnectionString ("DbConnection")));
-            services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo> ();
+            // services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo> ();
+            services.AddScoped<ICommandAPIRepo, CommandAPIRepo> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
