@@ -17,18 +17,18 @@ namespace CommandAPI.Controllers {
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Command>> GetAllCommands () {
+        public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands () {
             var commandItems = _repository.GetAllCommands ();
-            return Ok (commandItems);
+            return Ok (_mapper.Map<IEnumerable<CommandReadDTO>> (commandItems));
         }
 
         [HttpGet ("{id}")]
-        public ActionResult<Command> GetAllCommandById (int id) {
+        public ActionResult<CommandReadDTO> GetAllCommandById (int id) {
             var cmd = _repository.GetCommandById (id);
             if (cmd == null) {
                 return NotFound ();
             }
-            return Ok (cmd);
+            return Ok (_mapper.Map<CommandReadDTO> (cmd));
         }
     }
 }
