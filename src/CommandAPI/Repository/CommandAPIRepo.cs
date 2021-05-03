@@ -11,10 +11,14 @@ namespace CommandAPI.Repository {
             _context = context;
         }
         public void CreateCommand (Command cmd) {
-            throw new System.NotImplementedException ();
+            if (cmd == null) {
+                throw new ArgumentNullException (nameof (cmd));
+            }
+            _context.CommandItemsSet.Add (cmd);
         }
-        public void DeleteCommand (Command cmd) {
-            throw new System.NotImplementedException ();
+
+        public bool SaveChanges () {
+            return (_context.SaveChanges () >= 0);
         }
 
         public IEnumerable<Command> GetAllCommands () {

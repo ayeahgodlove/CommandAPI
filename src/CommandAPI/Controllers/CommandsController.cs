@@ -30,5 +30,6 @@ namespace CommandAPI.Controllers {
             }
             return Ok (_mapper.Map<CommandReadDTO> (cmd));
         }
+
     }
 }
