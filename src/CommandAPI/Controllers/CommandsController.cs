@@ -31,5 +31,15 @@ namespace CommandAPI.Controllers {
             return Ok (_mapper.Map<CommandReadDTO> (cmd));
         }
 
+        [HttpPost]
+        public ActionResult<CommandReadDTO> CreateCommand (CommandCreateDTO commandCreateDTO) {
+            var commandModel = _mapper.Map<Command> (commandCreateDTO);
+            _repository.CreateCommand (commandModel);
+            _repository.SaveChanges ();
+            var commandReadDTO = _mapper.Map<CommandReadDTO> (commandModel);
+            return CreatedAtRoute (nameof (GetCommandById),
+                new { Id = commandReadDTO.Id }, commandReadDTO);
+        }
+
     }
 }
