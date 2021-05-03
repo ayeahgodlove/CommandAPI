@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommandAPI.Data;
+using CommandAPI.DTOs;
 using CommandAPI.Models;
 
 namespace CommandAPI.Repository {
@@ -27,10 +29,6 @@ namespace CommandAPI.Repository {
 
         public Command GetCommandById (int id) {
             return _context.CommandItemsSet.FirstOrDefault (p => p.Id == id);
-        }
-
-        public bool SaveChanges () {
-            throw new System.NotImplementedException ();
         }
 
         public void UpdateCommand (Command cmd) {
