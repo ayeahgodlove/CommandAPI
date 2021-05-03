@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using AutoMapper;
+using CommandAPI.DTOs;
 using CommandAPI.Models;
 using CommandAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +10,10 @@ namespace CommandAPI.Controllers {
     [ApiController]
     public class CommandsController : ControllerBase {
         private readonly ICommandAPIRepo _repository;
-        public CommandsController (ICommandAPIRepo repository) {
+        private readonly IMapper _mapper;
+        public CommandsController (ICommandAPIRepo repository, IMapper mapper) {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]

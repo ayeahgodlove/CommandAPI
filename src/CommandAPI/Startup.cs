@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CommandAPI.Data;
 using CommandAPI.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +22,7 @@ namespace CommandAPI {
         }
         public void ConfigureServices (IServiceCollection services) {
             services.AddControllers ();
+            services.AddAutoMapper (AppDomain.CurrentDomain.GetAssemblies ());
             services.AddDbContext<CommandContext> (opt => opt.UseSqlServer (Configuration.GetConnectionString ("DbConnection")));
             // services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo> ();
             services.AddScoped<ICommandAPIRepo, CommandAPIRepo> ();
